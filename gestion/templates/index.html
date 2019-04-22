@@ -1,0 +1,126 @@
+{% extends "gestion/base.html" %}
+{% block content %}
+{% load static %}
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'todo_list/css/main.css' %}">
+
+	<body>
+		<h1>Sistema de gestión de tareas</h1>
+		<div class="logout">
+			<div class="right_container">
+				<div class="link_button">
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<h2>Crear proyectos</h2>
+			<form action="/create_project" method="POST">
+                {% csrf_token %}
+				<div class="data">
+					Nombre: <input id="form_name" type="text" name="name" value="Nuevo proyecto"><br/>
+				</div>
+				<div class="submit">
+                    <button type="submit" class="top-menu" style="width:10%"><span class="glyphicon glyphicon-floppy-saved"></span> </button>
+				</div>
+			</form>
+		</div>
+		{% if nprojects > 0 %}
+		<div class="container">
+			<h2>Añadir tarea</h2>
+			<form action="/create_task" method="POST">
+                {% csrf_token %}
+				<div class="data">
+					Nombre: <input id="form_name" type="text" name="name" value="Nueva tarea">
+					Prioridad: <select id="form_priority" name="priority">
+							<option value="0">Baja</option>
+							<option value="1">Normal</option>
+							<option value="2">Alta</option>
+						</select>
+					Dificultad: <select id="form_difficulty" name="difficulty">
+							<option value="0">Muy fácil</option>
+							<option value="1">Fácil</option>
+							<option value="2">Normal</option>
+							<option value="3">Difícil</option>
+							<option value="4">Muy difícil</option>
+						</select>
+					Proyecto:  <select id="form_project" name="project">
+							{% for project in projects %}
+							<option value="{{ project.pk }}">{{ project.name }}</option>
+							{% endfor %}
+						</select>
+					Privado: <input type="checkbox" name="user" value="private">
+				</div>
+				<div class="submit">
+					    <button type="submit" class="top-menu" style="width:10%"><span class="glyphicon glyphicon-floppy-saved"></span> </button>
+				</div>
+			</form>
+		</div>
+		{% endif %}
+		{% if ntasks_todo > 0 %}
+		<div class="container">
+			<h2>Tareas pendientes</h2>
+			{% for task in tasks_todo %}
+			<table class="container_item">
+				<tr>
+					<td class="container_item_first_column">
+						<div class="task_name">{{ task.name }}</div>
+					</td>
+					<td>
+						<!-- Celda vacía -->
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="task_project">Proyecto: {{ task.project_str }}</div>
+						<div class="data">
+							Creado: {{ task.creation_date }} |
+							Prioridad: {{ task.priority_str }} |
+							Dificultad: {{ task.difficulty_str }} |
+							Asignación: {{ task.user_str }}
+						</div>
+					</td>
+					<td class="container_item_second_column">
+                        <a href="/drop/{{ task.pk }} " class="top-menu"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a href="/set_done/{{ task.pk }} " class="top-menu"><span class="glyphicon glyphicon-ok"></span></a>
+					</td>
+				</tr>
+			</table>
+			{% endfor %}
+		</div>
+		{% endif %}
+		{% if ntasks_done > 0 %}
+		<div class="container">
+			<h2>Tareas acabadas</h2>
+			{% for task in tasks_done %}
+			<table class="container_item">
+				<tr>
+					<td class="container_item_first_column">
+						<div class="task_name">{{ task.name }}</div>
+					</td>
+					<td>
+						<!-- Celda vacía -->
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="task_project">{{ task.project_str }}</div>
+						<div class="data">
+							Creado: {{ task.creation_date }} |
+							Prioridad: {{ task.priority_str }} |
+							Dificultad: {{ task.difficulty_str }} |
+							Finalizado: {{ task.finalization_date }} |
+							Asignación: {{ task.user_str }}
+						</div>
+					</td>
+					<td class="container_item_second_column">
+                        <a href="/drop/{{ task.pk }} " class="top-menu"><span class="glyphicon glyphicon-trash"></span></a>
+						<a href="/set_open/{{ task.pk }} " class="top-menu"><span class="glyphicon glyphicon-open"></span></a>
+				</tr>
+			</table>
+			{% endfor %}
+		</div>
+		{% endif %}
+		<div class="copyright">Sistema de gestión de tareas. © Johan Gutierrez-2019</div>
+	</body>
+
+{% endblock %}

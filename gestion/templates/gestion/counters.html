@@ -1,0 +1,21 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+{% load static %}
+{% if user.is_authenticated %}
+<ul>
+    <h1><a>Estadisticas Documentos Equipos</a></h1>
+<p style="font-size:16pt"><strong>Equipos: <em>{{ num_equipos }}</em></strong></p>
+<p style="font-size:16pt"><strong>INVIMA N/A: <em>{{ num_na_invima }}</em></strong></p>
+<p style="font-size:16pt"><strong>NO INVIMA: <em>{{ num_no_invima }}</em></strong></p>
+<p style="font-size:16pt"><strong>NO FACTURA: <em>{{ num_no_factura }}</em></strong></p>
+<p style="font-size:16pt"><strong>IMPORTACION N/A: <em>{{ num_na_importacion }}</em></strong></p>
+<p style="font-size:16pt"><strong>NO IMPORTACION: <em>{{ num_no_importacion }}</em></strong></p>
+<p style="font-size:16pt"><strong>NO MANTENIMIENTO: <em>{{ num_no_mantenimiento }}</em></strong></p>
+<p style="font-size:16pt"><strong>CALIBRACION N/A: <em>{{ num_na_calibracion }}</em></strong></p>
+<p style="font-size:16pt"><strong>NO CALIBRACION: <em>{{ num_no_calibracion }}</em></strong></p>
+</ul>
+
+<p class="date">Pagina Visitada {{ num_visits }}{% if num_visits == 1 %} vez {% else %} veces{% endif %}.</p>
+{% endif %}
+
+{% endblock %}

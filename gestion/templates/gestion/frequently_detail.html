@@ -1,0 +1,16 @@
+
+{% extends 'gestion/base.html' %}
+{% load static %}
+{% block content %}
+{% load static %}
+
+<div><h1><a> Listado de equipos </a></h1></div>
+{% for equipo in posts %}
+<div><p>
+    <ul>
+       <strong> <li><a href= "{% url 'equipo_detail' pk=equipo.pk %}" >{{ equipo.nombre|escape }} </a></li>
+        {{ equipo.activo }}</strong>
+</ul>
+</div>
+{% endfor %}
+{% endblock %}

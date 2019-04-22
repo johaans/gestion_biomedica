@@ -1,0 +1,162 @@
+{% extends 'gestion/base.html' %}
+{% load static %}
+{% block content %}
+{% load static %}
+<body background="/static/media/imglogo/fondoquiru.png">
+    <div class="post" xmlns="http://www.w3.org/1999/html">
+        {% if equipo.created_date %}
+            <div class="date">
+                {{ equipo.created_date }}
+            </div>
+        {% endif %}
+        <div>
+            <table>
+                <tr>
+                    <th colspan="2"><h1><a> {{ post.nombre }}</a></h1></th>
+                    {% if user.is_authenticated %}
+                    <th><a class=top-menu href="{% url 'formulario_edit' pk=post.pk %}">
+                        <span class="glyphicon glyphicon-edit"></span></a>
+                    </th>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th>MODELO :</th>
+                    <th> {{ post.modelo }} </th>
+                </tr>
+                <tr>
+                    <th>SERIE:</th>
+                    <th>{{ post.serie }}</th>
+                </tr>
+                <tr>
+                    <th>ACTIVO:</th>
+                    <th>{{ post.activo }}</th>
+                </tr>
+                    {% if post.hv_file %}
+                <tr>
+                    <th colspan="2" style="font-size:16pt"><a href="{{ post.hv_file.url }}" class="glyphicon glyphicon-eye-open">
+                        Ver Hoja
+                    </a></th>
+                    {% endif %}
+                </tr>
+                    <tr>
+                        <th>FACTURA:</th>
+                        <th>{{ post.factura}}</th>
+                    </tr>
+                {% if post.factura_file %}
+                <tr>
+                    <th colspan="2" style="font-size:16pt"><a href="{{ post.factura_file.url }}" class="glyphicon glyphicon-eye-open">
+                        Ver Factura
+                    </a></th>
+                </tr>
+            {% endif %}
+                  <tr>
+                      <th> FECHA::</th>
+                      <th>{{ post.factura_date }}</th>
+                  </tr>
+                <tr>
+                    <th>PAIS:</th>
+                    <th>{{ post.pais }}</th>
+                </tr>
+                <tr>
+                    <th>PROVEEDOR:</th>
+                    <th>{{ post.importador }}</th>
+                </tr>
+                <tr>
+                    <th>RIESGO:</th>
+                    <th>{{ post.riesgo }}</th>
+                </tr>
+                <tr>
+                    <th>USO:</th>
+                    <th>{{ post.uso }}</th>
+                </tr>
+                <tr>
+                    <th>UBICACION:</th>
+                    <th>{{ post.ubicacion}}</th>
+                </tr>
+                <tr>
+                    <th>INVIMA:</th>
+                    <th>{{ post.invima }}</th>
+                </tr>
+            {% if post.invima_file %}
+                <tr>
+                    <th colspan="2" style="font-size:16pt"><a href="{{ post.invima_file.url }}" class="glyphicon glyphicon-eye-open">
+                        Ver Invima
+                    </a></th>
+                </tr>
+            {% endif %}
+                <tr>
+                    <th>IMPORTACION:</th>
+                    <th>{{ post.importacion }}</th>
+                </tr>
+            {% if post.importacion_file %}
+                <tr>
+
+                    <th colspan="2" style="font-size:16pt"><a href="{{ post.importacion_file.url }}" class="glyphicon glyphicon-eye-open">
+                        Ver Importacion
+                    </a></th>
+                </tr>
+            {% endif %}
+                <tr>
+                    <th>MANUAL 1:</th>
+                    <th>{{ post.manual_usuario }}</th>
+                </tr>
+                <tr>
+                    <th>MANUAL 2:</th>
+                    <th>{{ post.manual_funcionamiento }}</th>
+                </tr>
+                <tr>
+                    <th>MANUAL 3:</th>
+                    <th>{{ post.manual_instalacion }}</th>
+                </tr>
+                <tr>
+                    <th>MANUAL 4:</th>
+                    <th>{{ post.manual_mantenimiento }}</th>
+                </tr>
+                <tr>
+                    <th>UBICACION MANUALES:</th>
+                    <th>{{ post.ubicacion_manuales }}</th>
+                </tr>
+                <tr>
+                    <th>GUIA RAPIDA:</th>
+                    <th>{{ post.guia_rapida}}</th>
+                </tr>
+                <tr>
+                    <th>MANTENIMIENTO:</th>
+                    <th>{{ post.mantenimiento }}<th></th>
+                </tr>
+                <tr>
+                    <th>CALIBRACION</th>
+                    <th>{{ post.calibracion }}</th>
+                </tr>
+                {% if post.historico_mantenimiento %}
+                <tr>
+                    <th colspan="2" style="font-size:16pt">
+                        <a href="{{ post.historico_mantenimiento.url }}" class="glyphicon glyphicon-eye-open">
+                        Ver Historico
+                    </a></th>
+                </tr>
+                {% endif %}
+                {% if post.cronograma_calibracion %}
+                <tr>
+                    <th colspan="2"style="font-size:16pt">
+                        <a href="{{ post.cronograma_general.url }}" class="glyphicon glyphicon-eye-open">
+                        Ver Cronograma
+                    </a></th>
+                </tr>
+                {% endif %}
+                {% if post.imagen %}
+                <tr>
+                    <th colspan="2" style="font-size:16pt" >
+                        <a href="{{ post.imagen.url }}" class="glyphicon glyphicon-picture">
+                        Ver imagen
+                    </a></th>
+                </tr>
+            {% endif %}
+            <tr>
+                <th colspan="2"> {{ post.created_date }}</th>
+            </tr>
+            </table>
+        </div>
+    </div>
+</body>
+{% endblock %}

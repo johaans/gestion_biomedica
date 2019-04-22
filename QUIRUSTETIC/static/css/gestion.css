@@ -1,0 +1,90 @@
+h1 a {
+
+    /*color: #2DC4B3;*/
+    color: #0303AD;
+/*
+    font-family: 'Tangerine', serif;
+*/
+    font-size: 48px;
+    font-family: 'Lobster';
+    text-shadow: 2px 2px 2px #aaa;
+}
+
+
+.page-header {
+    background-color: #000099  ;
+    /*#ff9400;*/
+    margin-top: 0;
+    padding: 10px 30px 30px 50px;
+}
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #ffffff;
+    /*color= #672DC4;*/
+    font-size: 26pt;
+    text-decoration: none;
+
+}
+.page-header a {
+color: #ffffff;
+    /*color= #672DC4;*/
+    font-size: 36pt;
+    text-decoration: none;
+}
+.content {
+    margin-left: 40px;
+
+}
+
+h1, h2, h3, h4 {
+    /*font-family: 'Lobster', cursive;*/
+    font-family: 'Lobster',cursive;
+    text-shadow: 2px 2px 2px #aaa;
+}
+
+.date {
+    float: right;
+    font-size: 16pt;
+    margin-left: 100px;
+    color: #828282;
+    margin-top=0
+    margin-bottom=100
+    /*color: #0303AD;*/
+}
+
+.save {
+    float: right;
+}
+
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+
+    font-size: 26pt;
+    margin-right: 20px;
+    margin-left: 30px;
+    width: 100%;
+    color: #0303AD;
+}
+
+.post {
+    margin-bottom: 70px;
+    font-family: 'Lobster';
+    text-shadow: 2px 2px 2px #aaa;
+}
+
+.post h1 a, .post h1 a:visited {
+    color: #0303AD;
+}
+
+.imgusr {
+    margin-left= 20px;
+    font-size:26pt;
+    margin-right= 30px;
+}
+.save-menu .save-menu:hover, .save-menu:visited {
+
+       float:right;
+       }

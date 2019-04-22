@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+
+    <head>
+
+        {% block title %}<title>Biomedica</title>{% endblock %}
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext|Tangerine:bold,bolditalic" rel="stylesheet" type="text/css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <title>Confirmación de envío de formulario</title>
+
+        {% load static %}
+
+        <link rel="stylesheet" href="{% static 'css/gestion.css' %}">
+
+    </head>
+
+    <body background="/static/media/imglogo/fondo5.png">
+
+    <div class="col-md-16">
+
+        <div class="page-header">
+
+            <table>
+
+                <tr>
+
+                    <th colspan="5"><em><h1><a href="/">Gestion Tecnologica Equipos Biomedicos</a></h1></em></th>
+
+                    <th></th>
+
+                    <th></th>
+
+                     <img class="date" src="/static/media/imglogo/logo3.png"alt="logoquirustetic">
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+    <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-sm-2">
+
+                    {% block sidebar %}
+
+                    <div class="sidebar-nav">
+
+                        <ul>
+
+                            {% if user.is_authenticated %}
+
+                            <p style="font-size:14pt"><em><strong>{{ user.get_username }}</strong></em></p>
+
+                            <p class="top-menu"> <span class="glyphicon glyphicon-user" ></span></p>
+
+                            {% endif %}
+
+                            <a href="{% url 'inicio' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span> </a>
+
+                            {% if user.is_authenticated %}
+
+                            <a href="{% url 'search' %}" class="top-menu"><span class="glyphicon glyphicon-search"></span></a>
+
+                            <a href="{% url 'frequently_detail' %}" class="top-menu"><span class="glyphicon glyphicon-th-list"></span></a>
+
+                            <a href="{% url 'formulario' %}" class="top-menu"><span class="glyphicon glyphicon-pencil"></span></a>
+
+                            <a href="{% url 'counters' %}" class="top-menu"><span class="glyphicon glyphicon-info-sign"></span></a>
+
+                            <a href="{% url 'tareas' %}" class="top-menu"><span class="glyphicon glyphicon-tasks"></span></a>
+
+                            <a href="{% url 'pdf_view3' %}" class="top-menu"><span class="glyphicon glyphicon-folder-open"></span></a>
+
+                            <a href="{% url 'pdf_view' %}" class="top-menu"><span class="glyphicon glyphicon-calendar">H</span></a>
+
+                            <a href="{% url 'pdf_view2' %}" class="top-menu"><span class="glyphicon glyphicon-calendar">M</span></a>
+
+                            <a href="{% url 'logout'%}?next={{request.path}}" class="top-menu"><span class="glyphicon glyphicon-log-out"></span></a>
+
+                            {% else %}
+
+                            <a href="{% url 'login'%}?next={{request.path}}" class="top-menu"><span class="glyphicon glyphicon-log-in"></span></a>
+
+                            {% endif %}
+
+                        </ul>
+
+                    </div>
+
+                    {% endblock %}
+
+                </div>
+
+                <div class="col-sm-10">
+
+                    {% block content %}
+
+                    {% block pagination %}
+
+                    {% if is_paginated %}
+
+                    <div class="pagination">
+
+                        <span class="page-links">
+
+                            {% if page_obj.has_previous %}
+
+                            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+
+                            {% endif %}
+
+                            <span class="page-current">
+
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+
+                            </span>
+
+                            {% if page_obj.has_next %}
+
+                            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+
+                            {% endif %}
+
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+                    {% endblock %}
+
+                    {% endblock %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    <footer class="copyright"  >
+
+        <div><strong> Sistema de gestión Tecnologica. © Johan Gutierrez-2019 </strong></div>
+
+    </footer>
+
+    </body>
+
+</html>

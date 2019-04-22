@@ -1,0 +1,16 @@
+{% extends "gestion/base.html" %}
+{% block content %}
+{% load static %}
+<body>
+<h1><a>Gestion Quirustetic Home</a></h1>
+
+<p style="font-size:16pt"><strong>Bienvenidos a <em>Gestion De Equipos Biomedicos</em></strong></p>
+{% if user.is_authenticated %}
+<h2>Cantidad de equipos Registrados:</h2>
+<p style="font-size:16pt"><strong>Equipos: <em>{{ num_equipos }}</em></strong></p>
+<p class="date">Pagina Visitada {{ num_visits }}{% if num_visits == 1 %} vez {% else %} veces{% endif %}.</p>
+{% endif %}
+</body>
+
+
+{% endblock %}

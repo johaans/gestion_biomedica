@@ -1,0 +1,28 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+{% load static %}
+<body>
+<div><h1><a>Buscar</a></h1></div>
+  <form action="." method="GET" class="post">
+    <label for="q">Busqueda: </label>
+    <input type="text" name="q" value="{{ query|escape }}">
+      <button type="submit" style="font_size:36pt"><span class="glyphicon glyphicon-search"></span> </button>
+
+  </form>
+
+{% if query %}
+    <h2>"{{ query|escape }}":</h2>
+
+{% if results %}
+      <ul>
+      {% for activo in results %}
+          <li><a href="{% url 'equipo_detail' pk=activo.pk %}" >{{ activo|escape }}</a></li>
+      {% endfor %}
+
+      </ul>
+    {% else %}
+      <p>No match found</p>
+    {% endif %}
+  {% endif %}
+</body>
+{% endblock %}

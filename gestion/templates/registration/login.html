@@ -1,0 +1,42 @@
+{% extends "gestion/base.html" %}
+{% block content %}
+{% load static %}
+<body>
+{% if form.errors %}
+<p><strong>TU USUARIO Y CONTRASEÑA NO CONCUERDAN. INTENTE DE NUEVO.</strong></p>
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+<p><strong>TU CUENTA NO TIENE ACCESO A ESTA PAGINA. PARA CONTINUAR,
+    INGRESE CON UNA CUENTA QUE TENGA ACCESO.</strong></p>
+{% else %}
+<p><em><strong>INGRESE POR FAVOR</strong></em></p>
+{% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+
+    <div>
+        <table>
+            <tr>
+                <th><em>{{ form.username.label_tag }}</em></th>
+                <th><em>{{ form.username }}</em></th>
+            </tr>
+            <tr>
+                <th><em>{{ form.password.label_tag }}</em></th>
+                <th><em>{{ form.password }}</em></th>
+            </tr>
+            <tr>
+                <th><p><em><a href="{% url 'password_reset' %}">Lost password?</a></em></p></th>
+                <th colspan="2"><button type="submit"  style="width:80%" ><span class="glyphicon glyphicon-log-in" style="font-size:20pt"></span> </button></th>
+                <th> <input type="hidden" name="next" value="{{ next }}" /></th>
+            </tr>
+        </table>
+    </div>
+</form>
+
+</body>
+
+{% endblock %}
