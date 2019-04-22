@@ -26,7 +26,7 @@ SECRET_KEY = 'dt82=dpm!yrk3dmcc)v8_y+zn1#me3dj&f0b6peq6d4=zgvo+5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com','localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'quirustetic.pythonanywhere.com','localhost']
 
 
 # Application definition
@@ -80,18 +80,18 @@ WSGI_APPLICATION = 'QUIRUSTETIC.wsgi.application'
 
 DATABASES = {
         'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': 'database.db',
-        #'USER': 'root',
-        #'PASSWORD': '96020917463',
-        #'HOST':'127.0.0.1',
-        #'PORT':'3307',
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'quirustetic$quirustetic',
-        'OPTIONS':{'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
-        'USER': 'gestioningenieriabiomedica@gmail.com',
-        'PASSWORD': 'Itm733922',
-        'HOST':'quirustetic.mysql.pythonanywhere-services.com',
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': 'database.db',
+         'USER': 'root',
+         'PASSWORD': '96020917463',
+         'HOST':'127.0.0.1',
+         'PORT':'3307',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'quirustetic$quirustetic',
+        # 'OPTIONS':{'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
+        # 'USER': 'quirustetic',
+        # 'PASSWORD': 'Itm733922',
+        # 'HOST':'quirustetic.mysql.pythonanywhere-services.com',
     }
 }
 
