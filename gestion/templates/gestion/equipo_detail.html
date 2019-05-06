@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 {% load static %}
-<body background="/static/media/imglogo/fondoquiru.png">
+<body>
     <div class="post" xmlns="http://www.w3.org/1999/html">
         {% if equipo.created_date %}
             <div class="date">
@@ -13,11 +13,24 @@
             <table>
                 <tr>
                     <th colspan="2"><h1><a> {{ post.nombre }}</a></h1></th>
+                    <th rowspan="14">
+                        {% if post.imagen %}
+                        <img src="{{post.imagen.url}}" alt="{{post.nombre}}" class=top-menu style="width:220px; ">
+                        {% else %}
+                        <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ post.nombre }}" class=top-menu style="width:220px; ">{% endif %}
+
+                    </th>
                     {% if user.is_authenticated %}
                     <th><a class=top-menu href="{% url 'formulario_edit' pk=post.pk %}">
                         <span class="glyphicon glyphicon-edit"></span></a>
                     </th>
                     {% endif %}
+
+                </tr>
+                <tr>
+                    <th>MARCA:</th>
+                    <th>{{ post.marca }}</th>
+
                 </tr>
                 <tr>
                     <th>MODELO :</th>
@@ -34,7 +47,7 @@
                     {% if post.hv_file %}
                 <tr>
                     <th colspan="2" style="font-size:16pt"><a href="{{ post.hv_file.url }}" class="glyphicon glyphicon-eye-open">
-                        Ver Hoja
+                        Ver hoja de vida
                     </a></th>
                     {% endif %}
                 </tr>
@@ -97,19 +110,19 @@
                 </tr>
             {% endif %}
                 <tr>
-                    <th>MANUAL 1:</th>
+                    <th>MANUAL USUARIO:</th>
                     <th>{{ post.manual_usuario }}</th>
                 </tr>
                 <tr>
-                    <th>MANUAL 2:</th>
+                    <th>MANUAL FUNCIONAMIENTO:</th>
                     <th>{{ post.manual_funcionamiento }}</th>
                 </tr>
                 <tr>
-                    <th>MANUAL 3:</th>
+                    <th>MANUAL INSTALACION:</th>
                     <th>{{ post.manual_instalacion }}</th>
                 </tr>
                 <tr>
-                    <th>MANUAL 4:</th>
+                    <th>MANUAL MANTENIMIENTO:</th>
                     <th>{{ post.manual_mantenimiento }}</th>
                 </tr>
                 <tr>
@@ -144,14 +157,6 @@
                     </a></th>
                 </tr>
                 {% endif %}
-                {% if post.imagen %}
-                <tr>
-                    <th colspan="2" style="font-size:16pt" >
-                        <a href="{{ post.imagen.url }}" class="glyphicon glyphicon-picture">
-                        Ver imagen
-                    </a></th>
-                </tr>
-            {% endif %}
             <tr>
                 <th colspan="2"> {{ post.created_date }}</th>
             </tr>

@@ -52,6 +52,7 @@ class task(models.Model):
         return self.user.username
 
 class equipo(models.Model):
+    im="media/uploads/imagenes/no_im.jpg"
     si="si"
     no="no"
     na="N/A"
@@ -108,13 +109,13 @@ class equipo(models.Model):
         (na,"N/A"),
     )
     nombre = models.CharField('NOMBRE',max_length=25)
+    marca = models.CharField('MARCA',max_length=40,null=True,blank=True)
     modelo = models.CharField('MODELO',max_length=25)
     serie= models.CharField('SERIE', max_length=15,unique=True)
-    activo = models.CharField('ACTIVO',max_length=25, null=True,blank=True,unique=True)
+    activo = models.CharField('ACTIVO',max_length=25, null=True,blank=True,unique=True,help_text=" <strong>Para equipos alquilados ingrese el rango <em>900-999</em>.</strong>")
     hv_file=models.FileField(upload_to='uploads/hv/%Y/%m/%d/',null=True,blank=True)
     factura=models.CharField(max_length=3,choices=opciones,default=no)
-    factura_date = models.DateField(
-            blank=True, null=True)
+    factura_date = models.DateField(blank=True, null=True,help_text="<strong>Por favor usar el siguiente formsto: <em>DD-MM-YYYY</em>.</strong>")
     factura_file=models.FileField(upload_to='uploads/fact/%Y/%m/%d/',null=True,blank=True)
     pais=models.CharField(max_length=20,blank=True,null=True)
     importador=models.CharField(max_length=30,blank=True,null=True)
@@ -135,7 +136,7 @@ class equipo(models.Model):
     calibracion=models.CharField(max_length=3,choices=opciones,default=na)
     historico_mantenimiento=models.FileField(upload_to='uploads/cronom/%Y/%m/%d/',null=True,blank=True)
     cronograma_general=models.FileField(upload_to='uploads/cronocal/%Y/%m/%d/',null=True,blank=True)
-    imagen=models.ImageField(upload_to='uploads/imagenes',null=True,blank=True)
+    imagen=models.ImageField(upload_to='uploads/imagenes',null=True,blank=True, default=im)
     created_date = models.DateTimeField(default=timezone.now)
 
 
@@ -143,17 +144,4 @@ class equipo(models.Model):
     def __str__(self):
         return self.activo
 
-class cronograma(models.Model):
-    rel=models.ForeignKey(equipo,null=True,blank=True,on_delete=models.CASCADE)
-    man="mantenimiento"
-    cal="calibracion"
-    va="validacion"
-    v="verificacion"
-    tipo_choices=((man,"mantenimiento"),
-                  (cal,"calibracion"),
-                  (va,"validacion"),
-                  (v,"verificacion"),
-                  )
-    tipo=models.CharField(max_length=12,choices=tipo_choices, default="",null=True,blank=True)
-    fecha=models.DateField('fecha',null=True,blank=True)
 

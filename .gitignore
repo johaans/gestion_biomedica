@@ -5,3 +5,4 @@ venv
 database.db
 /uploads
 .DS_Store
+/static

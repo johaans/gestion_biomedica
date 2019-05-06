@@ -4,8 +4,9 @@ from django.views.generic.base import View
 from django.template import RequestContext
 #from django.views.decorators import csrf
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.admin.views.decorators import staff_member_required
 from .models import task, project
-from .models import equipo,cronograma
+from .models import equipo
 from django.db.models import Q
 from .models import equipo
 from django.utils import timezone
@@ -29,7 +30,7 @@ def inicio(request):
     return render(request, 'gestion/inicio.html',
                   context={'num_equipos':num_equipos,'num_visits':num_visits},
 )
-@login_required
+@staff_member_required
 def counters(request):
     """
     Función vista para la página inicio del sitio.
@@ -62,7 +63,7 @@ def frequently_detail(request):
     paginate_by=3
     return render(request, 'gestion/frequently_detail.html', {'posts': posts})
 
-@login_required
+@staff_member_required
 def search(request):
     query = request.GET.get('q', '')
     if query:
@@ -77,7 +78,7 @@ def search(request):
         "results": results,
         "query": query
     })
-@login_required
+@staff_member_required
 def equipo_detail(request,pk):
     post = get_object_or_404(equipo, pk=pk)
     return render(request, 'gestion/equipo_detail.html', {'post': post})
@@ -96,7 +97,7 @@ def formulario(request):
     else:
         form = equipoModelForm()
     return render(request, 'gestion/formulario.html', {'form': form})
-@login_required
+@staff_member_required
 def formulario_edit(request, pk):
     post = get_object_or_404(equipo, pk=pk)
     if request.method == "POST":
@@ -142,7 +143,7 @@ def main(request):
     ntasks_todo = task.objects.filter(Q(user = request.user) | Q(user = None)).filter(finalization_date = None).count()
     ntasks_done = task.objects.filter(Q(user = request.user) | Q(user = None)).exclude(finalization_date = None).count()
     # Filtro de datos
-    tasks_todo = task.objects.filter(Q(user = request.user) | Q(user = None)).filter(finalization_date = None).order_by( "creation_date")
+    tasks_todo = task.objects.filter(Q(user = request.user) | Q(user = None)).filter(finalization_date = None).order_by( "creation_date" , "difficulty")
     tasks_done = task.objects.filter(Q(user = request.user) | Q(user = None)).exclude(finalization_date = None).order_by("-finalization_date")
     projects = project.objects.all().order_by("name")
     return render(request, 'index.html',context={'tasks_done':tasks_done,
@@ -150,7 +151,7 @@ def main(request):
                                                  'ntasks_done':ntasks_done,'user':request.user,
                                                  'projects':projects,'nprojects':nprojects,}
     )
-@login_required
+@staff_member_required
 def create_task(request):
     if request.method == 'POST':
         l_name = request.POST.get('name')
@@ -173,7 +174,7 @@ def create_task(request):
             else:
                 l_task = task.objects.create(name = l_name, priority = l_priority, difficulty = l_difficulty)
     return main(request)
-@login_required
+@staff_member_required
 def create_project(request):
     if request.method == 'POST':
         l_name = request.POST.get('name')
@@ -181,21 +182,21 @@ def create_project(request):
         l_project = project.objects.create(name = l_name)
 
     return main(request)
-@login_required
+@staff_member_required
 def set_done(request, pk):
      tarea = get_object_or_404(task, pk=pk)
      tarea.set_done()
      tarea.save()
      return main(request)
 
-@login_required
+@staff_member_required
 def set_open(request, pk):
      tarea = get_object_or_404(task, pk=pk)
      tarea.set_open()
      tarea.save()
      return main(request)
 
-@login_required
+@staff_member_required
 def drop(request, pk):
      tarea = get_object_or_404(task, pk=pk)
      tarea.delete()

@@ -2,7 +2,7 @@ from django import forms
 
 from betterforms.multiform import MultiModelForm
 
-from .models import equipo, cronograma
+from .models import equipo
 
 
 class equipoModelForm(forms.ModelForm):
@@ -10,14 +10,5 @@ class equipoModelForm(forms.ModelForm):
         model = equipo
         fields = '__all__'
 
-class cronogramaModelForm(forms.ModelForm):
-    class Meta:
-        model = cronograma
-        fields = ['tipo', 'fecha']
 
 
-class equipocronogramaModelForm(MultiModelForm):
-    form_classes = {
-        'equipo': equipoModelForm,
-        'cronograma': cronogramaModelForm,
-    }

@@ -3,6 +3,7 @@
 {% load static %}
 <body>
 <div><h1><a>Buscar</a></h1></div>
+<p><strong>Para equipos alquilados ingrese el rango <em>900-999</em>.</strong></p>
   <form action="." method="GET" class="post">
     <label for="q">Busqueda: </label>
     <input type="text" name="q" value="{{ query|escape }}">
@@ -17,6 +18,7 @@
       <ul>
       {% for activo in results %}
           <li><a href="{% url 'equipo_detail' pk=activo.pk %}" >{{ activo|escape }}</a></li>
+          {{ nombre }}
       {% endfor %}
 
       </ul>

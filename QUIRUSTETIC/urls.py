@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('gestion/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.auth.views import LoginView,LogoutView,PasswordResetForm,PasswordResetDoneView,PasswordResetConfirmView,PasswordResetCompleteView
+from django.contrib.auth.views import LoginView,LogoutView,PasswordResetDoneView,PasswordResetConfirmView,PasswordResetCompleteView,PasswordResetView
 from django.urls import path, include
 from django.conf.urls import url
 from django.conf import settings
@@ -27,6 +27,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^accounts/login/$', LoginView.as_view(), name='login'),
     url(r'^accounts/logout/$', LogoutView.as_view(), name='logout', kwargs={'next_page': '/'}),
+    url(r'^accounts/password_reset/$', PasswordResetView.as_view(), name='password_reset'),
+    url(r'^accounts/password_reset/done/$', PasswordResetDoneView.as_view(), name='password_reset_done'),
+    url(r'^accounts/password_reset/confirm/$', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    url(r'^accounts/password_reset/complete/$', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('', include('gestion.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
 
