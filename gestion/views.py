@@ -4,7 +4,6 @@ from django.views.generic.base import View
 from django.template import RequestContext
 #from django.views.decorators import csrf
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.admin.views.decorators import staff_member_required
 from .models import task, project
 from .models import equipo
 from django.db.models import Q
@@ -45,6 +44,7 @@ def counters(request):
     num_no_mantenimiento=equipo.objects.filter(mantenimiento__exact='no').count()
     num_na_calibracion=equipo.objects.filter(calibracion__exact='na').count()
     num_no_calibracion=equipo.objects.filter(calibracion__exact='no').count()
+    num_no_musuario=equipo.objects.filter(manual_usuario__exact='no').count()
     # Number of visits to this view, as counted in the session variable.
     num_visits=request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits+1
@@ -54,6 +54,7 @@ def counters(request):
                            'num_no_factura':num_no_factura,'num_na_importacion':num_na_importacion,
                            'num_no_importacion':num_no_importacion,'num_no_mantenimiento':num_no_mantenimiento,
                            'num_na_calibracion':num_na_calibracion,'num_no_calibracion':num_no_calibracion,
+                           'num_no_musuario' : num_no_musuario,
                            },
 )
 
@@ -62,7 +63,22 @@ def frequently_detail(request):
     posts = equipo.objects.filter(activo__lte=timezone.now()).order_by('activo')
     paginate_by=3
     return render(request, 'gestion/frequently_detail.html', {'posts': posts})
-
+@staff_member_required
+def noinvima(request):
+    sininvima = equipo.objects.filter(invima__exact='no').order_by('activo')
+    return render(request, 'gestion/noinvima.html', {'sininvima': sininvima})
+@staff_member_required
+def nomanual(request):
+    sinmanual = equipo.objects.filter(manual_usuario__exact='no').order_by('activo')
+    return render(request, 'gestion/nomanual.html', {'sinmanual': sinmanual})
+@staff_member_required
+def noaplicainvima(request):
+    nainvima = equipo.objects.filter(invima__exact='na').order_by('activo')
+    return render(request, 'gestion/noaplicainvima.html', {'nainvima': nainvima})
+@staff_member_required
+def nofactura(request):
+    sinfactura = equipo.objects.filter(factura__exact='no').order_by('activo')
+    return render(request, 'gestion/nofactura.html', {'sinfactura': sinfactura})
 @staff_member_required
 def search(request):
     query = request.GET.get('q', '')
@@ -201,3 +217,12 @@ def drop(request, pk):
      tarea = get_object_or_404(task, pk=pk)
      tarea.delete()
      return main(request)
+
+def page_not_found(request,exception=None):
+    response=render(request,template_name='404.html',)
+    response.status_code=404
+    return response
+def server_error(request):
+    response=render(request,template_name='500.html')
+    response.status_code=500
+    return response

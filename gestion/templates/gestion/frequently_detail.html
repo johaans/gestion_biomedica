@@ -8,9 +8,14 @@
 {% for equipo in posts %}
 <div><p>
     <ul>
-       <strong> <li><a href= "{% url 'equipo_detail' pk=equipo.pk %}" >{{ equipo.nombre|escape }} </a></li>
+       <strong> <li style="font-size:16pt"><a href= "{% url 'equipo_detail' pk=equipo.pk %}" >{{ equipo.nombre|escape }} </a></li>
         {{ equipo.activo }}</strong>
+
 </ul>
+    {% if posts.imagen %}
+        <img src="{{posts.imagen.url}}" alt="{{posts.nombre}}" class=top-menu style="width:220px; ">
+        {% else %}
+        <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ posts.nombre }}" class=top-menu style="width:220px; ">{% endif %}
 </div>
 {% endfor %}
 {% endblock %}

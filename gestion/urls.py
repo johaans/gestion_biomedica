@@ -5,8 +5,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('404/', views.page_not_found,name='page_not_found'),
     path('', views.inicio, name='inicio'),
     path('list/', views.frequently_detail, name='frequently_detail'),
+    path('noinvima/', views.noinvima, name='noinvima'),
+    path('nomanual/', views.nomanual, name='nomanual'),
+    path('noaplicainvima/', views.noaplicainvima, name='noaplicainvima'),
+    path('nofactura/', views.nofactura, name='nofactura'),
     path('search/', views.search, name='search'),
     path('search/<int:pk>)/', views.equipo_detail, name='equipo_detail'),
     path('formulario/',views.formulario, name='formulario'),
@@ -22,3 +27,6 @@ urlpatterns = [
     path('create_project', views.create_project,name='create_project'),
     path('create_task',views.create_task,name='create_task'),
               ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'gestion.views.page_not_found'
+#handler500 = 'gestion.views.handler500'

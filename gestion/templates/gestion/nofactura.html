@@ -1,0 +1,19 @@
+{% extends 'gestion/base.html' %}
+{% load static %}
+{% block content %}
+{% load static %}
+
+<div><h1><a> Listado De Equipos Que No Tienen Factura</a></h1></div>
+{% for equipo in sinfactura %}
+<div><p>
+    <ul>
+       <strong> <li><a href= "{% url 'equipo_detail' pk=equipo.pk %}" >{{ equipo.nombre|escape }} </a></li>
+        {{ equipo.activo }}</strong>
+        {% if sinfactura.imagen %}
+        <img src="{{sinfactura.imagen.url}}" alt="{{sinfactura.nombre}}" class=top-menu style="width:220px; ">
+        {% else %}
+        <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ sinmanual.nombre }}" class=top-menu style="width:220px; ">{% endif %}
+</ul>
+</div>
+{% endfor %}
+{% endblock %}

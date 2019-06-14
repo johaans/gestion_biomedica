@@ -25,8 +25,8 @@ SECRET_KEY = 'dt82=dpm!yrk3dmcc)v8_y+zn1#me3dj&f0b6peq6d4=zgvo+5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['127.0.0.1', 'quirustetic.pythonanywhere.com','localhost']
+TEMPLATE_DEBUG = DEBUG
+ALLOWED_HOSTS = ['127.0.0.1', 'quirustetic.pythonanywhere.com','localhost','*','0.0.0.0']
 
 
 # Application definition
@@ -59,6 +59,7 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
                  './templates',
                  os.path.join(PROJECT_PATH, 'todo_list','templates'),
+                 os.path.join(PROJECT_PATH, 'gestion','templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -142,7 +143,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'static','media')
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
+handler404 = 'gestion.views.handler404'
+handler500 = 'gestion.views.handler500'
 #EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 MAILER_EMAIL_BACKEND = EMAIL_BACKEND

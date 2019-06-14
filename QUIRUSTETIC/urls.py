@@ -19,6 +19,13 @@ from django.urls import path, include
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import handler400, handler403, handler404, handler500
+
+
+#handler400 = 'gestion.views.bad_request'
+#handler403 = 'my_app.views.permission_denied'
+handler404 = 'gestion.views.page_not_found'
+handler500 = 'gestion.views.server_error'
 from django.contrib.auth import views as auth_views
 
 
@@ -32,7 +39,8 @@ urlpatterns = [
     url(r'^accounts/password_reset/confirm/$', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     url(r'^accounts/password_reset/complete/$', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('', include('gestion.urls')),
-    url(r'^accounts/', include('django.contrib.auth.urls')),
+    #url(r'^accounts/', include('django.contrib.auth.urls')),
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 admin.site.site_header = 'Sistema De Gestion Tecnologica'
+

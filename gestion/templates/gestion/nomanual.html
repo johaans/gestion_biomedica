@@ -1,0 +1,23 @@
+{% extends 'gestion/base.html' %}
+{% load static %}
+{% block content %}
+{% load static %}
+
+<div><h1><a> Equipos Que No Tienen Manual De Usuario </a></h1></div>
+{% if equipo in sinmanual %}
+{% for equipo in sinmanual %}
+<div><p>
+    <ul>
+       <strong> <li><a href= "{% url 'equipo_detail' pk=equipo.pk %}" >{{ equipo.nombre|escape }} </a></li>
+        {{ equipo.activo }}</strong>
+        {% if sinmanual.imagen %}
+        <img src="{{sinmanual.imagen.url}}" alt="{{sinmanual.nombre}}" class=top-menu style="width:220px; ">
+        {% else %}
+        <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ sinmanual.nombre }}" class=top-menu style="width:220px; ">{% endif %}
+</ul>
+</div>
+{% endfor %}
+{% else %}
+<p><strong>NO HAY EQUIPOS EN ESTA LISTA</strong></p>
+{% endif %}
+{% endblock %}

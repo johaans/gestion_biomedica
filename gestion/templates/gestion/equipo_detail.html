@@ -46,7 +46,7 @@
                 </tr>
                     {% if post.hv_file %}
                 <tr>
-                    <th colspan="2" style="font-size:16pt"><a href="{{ post.hv_file.url }}" class="glyphicon glyphicon-eye-open">
+                    <th colspan="2" style="font-size:16pt"><a href="{{ post.hv_file.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
                         Ver hoja de vida
                     </a></th>
                     {% endif %}
@@ -57,13 +57,13 @@
                     </tr>
                 {% if post.factura_file %}
                 <tr>
-                    <th colspan="2" style="font-size:16pt"><a href="{{ post.factura_file.url }}" class="glyphicon glyphicon-eye-open">
+                    <th colspan="2" style="font-size:16pt"><a href="{{ post.factura_file.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
                         Ver Factura
                     </a></th>
                 </tr>
             {% endif %}
                   <tr>
-                      <th> FECHA::</th>
+                      <th> FECHA DE FACTURA:</th>
                       <th>{{ post.factura_date }}</th>
                   </tr>
                 <tr>
@@ -92,7 +92,7 @@
                 </tr>
             {% if post.invima_file %}
                 <tr>
-                    <th colspan="2" style="font-size:16pt"><a href="{{ post.invima_file.url }}" class="glyphicon glyphicon-eye-open">
+                    <th colspan="2" style="font-size:16pt"><a href="{{ post.invima_file.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
                         Ver Invima
                     </a></th>
                 </tr>
@@ -104,7 +104,7 @@
             {% if post.importacion_file %}
                 <tr>
 
-                    <th colspan="2" style="font-size:16pt"><a href="{{ post.importacion_file.url }}" class="glyphicon glyphicon-eye-open">
+                    <th colspan="2" style="font-size:16pt"><a href="{{ post.importacion_file.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
                         Ver Importacion
                     </a></th>
                 </tr>
@@ -144,7 +144,7 @@
                 {% if post.historico_mantenimiento %}
                 <tr>
                     <th colspan="2" style="font-size:16pt">
-                        <a href="{{ post.historico_mantenimiento.url }}" class="glyphicon glyphicon-eye-open">
+                        <a href="{{ post.historico_mantenimiento.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
                         Ver Historico
                     </a></th>
                 </tr>
@@ -152,7 +152,7 @@
                 {% if post.cronograma_calibracion %}
                 <tr>
                     <th colspan="2"style="font-size:16pt">
-                        <a href="{{ post.cronograma_general.url }}" class="glyphicon glyphicon-eye-open">
+                        <a href="{{ post.cronograma_general.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
                         Ver Cronograma
                     </a></th>
                 </tr>

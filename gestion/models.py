@@ -52,7 +52,7 @@ class task(models.Model):
         return self.user.username
 
 class equipo(models.Model):
-    im="media/uploads/imagenes/no_im.jpg"
+    im="uploads/imagenes/no_im.jpg"
     si="si"
     no="no"
     na="N/A"
@@ -112,7 +112,7 @@ class equipo(models.Model):
     marca = models.CharField('MARCA',max_length=40,null=True,blank=True)
     modelo = models.CharField('MODELO',max_length=25)
     serie= models.CharField('SERIE', max_length=15,unique=True)
-    activo = models.CharField('ACTIVO',max_length=25, null=True,blank=True,unique=True,help_text=" <strong>Para equipos alquilados ingrese el rango <em>900-999</em>.</strong>")
+    activo = models.CharField('ACTIVO',max_length=25, null=True,blank=True,unique=True,help_text=" <strong>Para Equipos Alquilados Ingrese El Rango <em>De 200 En Adelante</em>.</strong>")
     hv_file=models.FileField(upload_to='uploads/hv/%Y/%m/%d/',null=True,blank=True)
     factura=models.CharField(max_length=3,choices=opciones,default=no)
     factura_date = models.DateField(blank=True, null=True,help_text="<strong>Por favor usar el siguiente formsto: <em>DD-MM-YYYY</em>.</strong>")
@@ -126,10 +126,10 @@ class equipo(models.Model):
     invima_file=models.FileField(upload_to='uploads/inv/%Y/%m/%d/',null=True,blank=True)
     importacion=models.CharField(max_length=3,choices=opciones,default=no)
     importacion_file=models.FileField(upload_to='uploads/impor/%Y/%m/%d/',null=True,blank=True)
-    manual_usuario=models.CharField(max_length=3,choices=opciones,default=na)
-    manual_funcionamiento=models.CharField(max_length=3,choices=opciones,default=na)
-    manual_instalacion=models.CharField(max_length=3,choices=opciones,default=na)
-    manual_mantenimiento=models.CharField(max_length=3,choices=opciones,default=na)
+    manual_usuario=models.CharField(max_length=3,choices=opciones,default=no)
+    manual_funcionamiento=models.CharField(max_length=3,choices=opciones,default=no)
+    manual_instalacion=models.CharField(max_length=3,choices=opciones,default=no)
+    manual_mantenimiento=models.CharField(max_length=3,choices=opciones,default=no)
     ubicacion_manuales=models.CharField(max_length=20,null=True,blank=True)
     guia_rapida=models.CharField(max_length=3,choices=opciones,default=na)
     mantenimiento=models.CharField(max_length=3,choices=opciones,default=na)

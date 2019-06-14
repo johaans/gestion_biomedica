@@ -1,0 +1,22 @@
+{% extends 'gestion/base.html' %}
+{% load static %}
+{% block content %}
+{% load static %}
+
+<div><h1><a> Equipos Que No Aplican Invima </a></h1></div>
+{% if equipo in nainvima %}
+{% for equipo in nainvima %}
+<div><p>
+    <ul>
+       <strong> <li><a href= "{% url 'equipo_detail' pk=equipo.pk %}" >{{ equipo.nombre|escape }} </a></li>
+        {{ equipo.activo }}</strong>
+        {% if nainvima.imagen %}
+        <img src="{{nainvima.imagen.url}}" alt="{{nainvima.nombre}}" class=top-menu style="width:220px; ">
+        {% else %}
+        <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ nainvima.nombre }}" class=top-menu style="width:220px; ">{% endif %}
+</ul>
+</div>
+{% endfor %}
+{% else %}
+<p><strong>NO HAY EQUIPOS EN ESTA LISTA</strong></p>{% endif %}
+{% endblock %}
