@@ -44,9 +44,9 @@
                     <th>ACTIVO:</th>
                     <th>{{ post.activo }}</th>
                 </tr>
-                    {% if post.hv_file %}
+                    {% if post.archivo_hoja_de_vida %}
                 <tr>
-                    <th colspan="2" style="font-size:20pt" align="center"><a href="{{ post.hv_file.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
+                    <th colspan="2" style="font-size:20pt" align="center"><a href="{{ post.archivo_hoja_de_vida.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
                         Ver hoja de vida
                     </a></th>
                     {% endif %}
@@ -55,21 +55,17 @@
                         <th>FACTURA:</th>
                         <th>{{ post.factura}}</th>
                     </tr>
-                {% if post.factura_file %}
+                {% if post.archivo_factura %}
                 <tr>
-                    <th colspan="2" style="font-size:20pt"><a href="{{ post.factura_file.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
+                    <th colspan="2" style="font-size:20pt"><a href="{{ post.archivo_factura.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
                         Ver Factura
                     </a></th>
                 </tr>
             {% endif %}
                   <tr>
                       <th> FECHA DE FACTURA:</th>
-                      <th>{{ post.factura_date }}</th>
+                      <th>{{ post.fecha_factura }}</th>
                   </tr>
-                <tr>
-                    <th>PAIS:</th>
-                    <th>{{ post.pais }}</th>
-                </tr>
                 <tr>
                     <th>PROVEEDOR:</th>
                     <th>{{ post.importador }}</th>
@@ -90,9 +86,9 @@
                     <th>INVIMA:</th>
                     <th>{{ post.invima }}</th>
                 </tr>
-            {% if post.invima_file %}
+            {% if post.archivo_invima %}
                 <tr>
-                    <th colspan="2" style="font-size:20pt"><a href="{{ post.invima_file.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
+                    <th colspan="2" style="font-size:20pt"><a href="{{ post.archivo_invima.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
                         Ver Invima
                     </a></th>
                 </tr>
@@ -101,10 +97,10 @@
                     <th>IMPORTACION:</th>
                     <th>{{ post.importacion }}</th>
                 </tr>
-            {% if post.importacion_file %}
+            {% if post.archivo_importacion %}
                 <tr>
 
-                    <th colspan="2" style="font-size:20pt"><a href="{{ post.importacion_file.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
+                    <th colspan="2" style="font-size:20pt"><a href="{{ post.archivo_importacion.url }}" class="glyphicon glyphicon-eye-open" target="_blank">
                         Ver Importacion
                     </a></th>
                 </tr>
