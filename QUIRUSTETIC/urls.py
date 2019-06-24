@@ -25,7 +25,7 @@ from django.conf.urls import handler400, handler403, handler404, handler500
 #handler400 = 'gestion.views.bad_request'
 #handler403 = 'my_app.views.permission_denied'
 handler404 = 'gestion.views.page_not_found'
-handler500 = 'gestion.views.server_error'
+#handler500 = 'gestion.views.server_error'
 from django.contrib.auth import views as auth_views
 
 

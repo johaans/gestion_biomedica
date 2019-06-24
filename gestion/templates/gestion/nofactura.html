@@ -1,19 +1,35 @@
+
 {% extends 'gestion/base.html' %}
 {% load static %}
 {% block content %}
 {% load static %}
 
-<div><h1><a> Listado De Equipos Que No Tienen Factura</a></h1></div>
+<div><h1><a> EQUIPOS QUE NO TIENEN FACTURA </a></h1></div>
 {% for equipo in sinfactura %}
 <div><p>
-    <ul>
-       <strong> <li><a href= "{% url 'equipo_detail' pk=equipo.pk %}" >{{ equipo.nombre|escape }} </a></li>
-        {{ equipo.activo }}</strong>
-        {% if sinfactura.imagen %}
-        <img src="{{sinfactura.imagen.url}}" alt="{{sinfactura.nombre}}" class=top-menu style="width:220px; ">
+    <table align="left">
+    <tr>
+        <td colspan="3"><strong style="font-size:24pt">
+                <a href= "{% url 'equipo_detail' pk=equipo.pk %}" >{{ equipo.nombre|escape }} </a>
+        </strong></td>
+        <td></td>
+
+    <td rowspan="2">
+        {% if equipo.sinfactura.imagen %}
+        <img src="{{equipo.posts.imagen.url}}" alt="{{posts.nombre}}" class=top-menu style="width:220px; ">
         {% else %}
-        <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ sinmanual.nombre }}" class=top-menu style="width:220px; ">{% endif %}
-</ul>
+        <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ posts.nombre }}" class=top-menu style="width:220px; ">{% endif %}
+    </td>
+    </tr>
+
+    <tr style="font-size:22pt" >
+        <td><b>ACTIVO #</b></td><td align="center"><b ><a href= "{% url 'equipo_detail' pk=equipo.pk %}" style="color-font=black" >{{ equipo.activo }}</a></b></td></tr>
+
+
+
+</table>
+
 </div>
 {% endfor %}
+    <a href="/counters" class="top-menu" ><span class="glyphicon glyphicon-hand-left" >ATRAS</span></a>
 {% endblock %}

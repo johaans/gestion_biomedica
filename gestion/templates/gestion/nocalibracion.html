@@ -3,8 +3,8 @@
 {% block content %}
 {% load static %}
 
-<div><h1><a> EQUIPOS QUE NO TIENEN MANUAL </a></h1></div>
-{% for equipo in sinmanual %}
+<div><h1><a> EQUIPOS QUE NO TIENEN CALIBRACION </a></h1></div>
+{% for equipo in nocal %}
 <div><p>
     <table align="left">
     <tr>
@@ -14,10 +14,10 @@
         <td></td>
 
     <td rowspan="2">
-        {% if equipo.sinmanual.imagen %}
-        <img src="{{equipo.sinmanual.imagen.url}}" alt="{{sinmanual.nombre}}" class=top-menu style="width:220px; ">
+        {% if equipo.nocal.imagen %}
+        <img src="{{equipo.nocal.imagen.url}}" alt="{{nocal.nombre}}" class=top-menu style="width:220px; ">
         {% else %}
-        <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ sinmanual.nombre }}" class=top-menu style="width:220px; ">{% endif %}
+        <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ nocal.nombre }}" class=top-menu style="width:220px; ">{% endif %}
     </td>
     </tr>
 

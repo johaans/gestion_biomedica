@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html>
+{% extends 'gestion/base.html' %}
 {% load static %}
-<head>
-    <title></title>
+{% block content %}
+{% load static %}
     <link href="https://fonts.googleapis.com/css?family=Coustard:900" rel="stylesheet">
-    <link rel='stylesheet' href="{% static 'css/404.css' %}">
-
-
-</head>
+    <link rel="stylesheet" href="{% static 'css/500.css' %}"  >
+    {% load staticfiles %}
 <body>
-    <h1>500</h1>
-    <h2>Server Error</h2>
+    <h1>ERROR 500</h1>
+    <h2>ERROR DE SERVIDOR</h2>
     <div class="backg">
         <div class="sand">
-           <a href="https://www.youtube.com/watch?v=8nDAxCpGITQ">My Youtube Channel</a>
+            <b style="size=80"><a href="/" style="font-size=30pt">INICIO</a></b>
         </div>
         <div class="tower">
             <div class="s1"></div>
@@ -43,4 +40,4 @@
         </div>
     </div>
 </body>
-</html>
+{% endblock %}

@@ -4,19 +4,18 @@
 {% if user.is_authenticated %}
 <ul>
     <h1><a>Estadisticas Documentos Equipos</a></h1>
-    <p style="font-size:16pt"><strong>Numero Total De Equipos:  <a href="{% url 'frequently_detail' %}"><em>{{ num_equipos }}</em></a></strong></p>
-    <p style="font-size:16pt"><strong>Equipos Que No Aplican A INVIMA:  <a href="{% url 'noaplicainvima' %}"><em>{{ num_na_invima }}</em></a></strong></p>
-    <p style="font-size:16pt"><strong>Equipos Que No Tienen INVIMA:  <a href="{% url 'noinvima' %}"><em>{{ num_no_invima }}</em></a></strong></p>
-    <p style="font-size:16pt"><strong>Equipos Que No Tienen FACTURA:  <a href="{% url 'nofactura' %}"><em>{{ num_no_factura }}</em></a></strong></p>
-    <p style="font-size:16pt"><strong>Equipos Que No Aplican A IMPORTACION :  <a href=""><em>{{ num_na_importacion }}</em></a></strong></p>
-    <p style="font-size:16pt"><strong>Equipos Que No Tienen IMPORTACION: <a href=""> <em>{{ num_no_importacion }}</em></a></strong></p>
-    <p style="font-size:16pt"><strong>Equipos Que No Tienen MANTENIMIENTO: <a href=""> <em>{{ num_no_mantenimiento }}</em></a></strong></p>
-    <p style="font-size:16pt"><strong>Equipos Que No Aplican A CALIBRACION: <a href=""> <em>{{ num_na_calibracion }}</em></a></strong></p>
-    <p style="font-size:16pt"><strong>Equipos Que No Tienen CALIBRACION:  <a href=""><em>{{ num_no_calibracion }}</em></a></strong></p>
-    <p style="font-size:16pt"><strong>Equipos Que No Tienen Manual De Usuario:  <a href="{% url 'nomanual' %}"><em>{{ num_no_calibracion }}</em></a></strong></p>
+    <li style="font-size:16pt"><strong>Numero Total De Equipos:  <a href="{% url 'frequently_detail' %}"><em>{{ num_equipos }}</em></a></strong></li>
+    <li style="font-size:16pt"><strong>Equipos Que No Aplican A INVIMA:  <a href="{% url 'noaplicainvima' %}"><em>{{ num_na_invima }}</em></a></strong></li>
+    <li style="font-size:16pt"><strong>Equipos Que No Tienen INVIMA:  <a href="{% url 'noinvima' %}"><em>{{ num_no_invima }}</em></a></strong></li>
+    <li style="font-size:16pt"><strong>Equipos Que No Tienen FACTURA:  <a href="{% url 'nofactura' %}"><em>{{ num_no_factura }}</em></a></strong></li>
+    <li style="font-size:16pt"><strong>Equipos Que No Aplican A IMPORTACION :  <a href="{% url 'noaplicaimportacion' %}"><em>{{ num_na_importacion }}</em></a></strong></li>
+    <li style="font-size:16pt"><strong>Equipos Que No Tienen IMPORTACION: <a href="{% url 'noimportacion' %}"> <em>{{ num_no_importacion }}</em></a></strong></li>
+    <li style="font-size:16pt"><strong>Equipos Que No Tienen MANTENIMIENTO: <a href="{% url 'nomantenimiento' %}"> <em>{{ num_no_mantenimiento }}</em></a></strong></li>
+    <li style="font-size:16pt"><strong>Equipos Que No Aplican A CALIBRACION: <a href="{% url 'noaplicacalibracion' %}"> <em>{{ num_na_calibracion }}</em></a></strong></li>
+    <li style="font-size:16pt"><strong>Equipos Que No Tienen CALIBRACION:  <a href="{% url 'nocalibracion' %}"><em>{{ num_no_calibracion }}</em></a></strong></li>
+    <li style="font-size:16pt"><strong>Equipos Que No Tienen Manual De Usuario:  <a href="{% url 'nomanual' %}"><em>{{ num_no_calibracion }}</em></a></strong></li>
 
 </ul>
- <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
 <p class="date">Pagina Visitada {{ num_visits }}{% if num_visits == 1 %} vez {% else %} veces{% endif %}.</p>
 {% endif %}
 

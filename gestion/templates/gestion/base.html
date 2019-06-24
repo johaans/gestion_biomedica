@@ -27,6 +27,7 @@
         {% load static %}
 
         <link rel="stylesheet" href="{% static 'css/gestion.css' %}">
+        <link rel="shortcut icon" href="/static/media/iconoquiru.ico" />
 
     </head>
 
@@ -89,11 +90,11 @@
 
                             <a href="{% url 'tareas' %}" class="top-menu"><span class="glyphicon glyphicon-tasks"></span></a>
 
-                            <a href="{% url 'pdf_view3' %}" class="top-menu"><span class="glyphicon glyphicon-folder-open"></span></a>
+                            <a href="/static/media/pdf/inventario.pdf" class="top-menu" target="_blank"><span class="glyphicon glyphicon-folder-open"></span></a>
 
-                            <a href="{% url 'pdf_view' %}" class="top-menu"><span class="glyphicon glyphicon-calendar">H</span></a>
+                            <a href="/static/media/pdf/mantenimiento.pdf " class="top-menu" target="_blank"><span class="glyphicon glyphicon-calendar">H</span></a>
 
-                            <a href="{% url 'pdf_view2' %}" class="top-menu"><span class="glyphicon glyphicon-calendar">M</span></a>
+                            <a href="/static/media/pdf/metrologia.pdf" class="top-menu" target="_blank"><span class="glyphicon glyphicon-calendar">M</span></a>
 
                             <a href="{% url 'logout'%}?next={{request.path}}" class="top-menu"><span class="glyphicon glyphicon-log-out"></span></a>
 

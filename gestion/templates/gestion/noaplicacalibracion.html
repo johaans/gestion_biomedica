@@ -3,8 +3,8 @@
 {% block content %}
 {% load static %}
 
-<div><h1><a> EQUIPOS QUE NO TIENEN MANUAL </a></h1></div>
-{% for equipo in sinmanual %}
+<div><h1><a> EQUIPOS QUE NO APLICAN AL PAME </a></h1></div>
+{% for equipo in nacalibracion %}
 <div><p>
     <table align="left">
     <tr>
@@ -14,10 +14,10 @@
         <td></td>
 
     <td rowspan="2">
-        {% if equipo.sinmanual.imagen %}
-        <img src="{{equipo.sinmanual.imagen.url}}" alt="{{sinmanual.nombre}}" class=top-menu style="width:220px; ">
+        {% if equipo.nacalibracion.imagen %}
+        <img src="{{equipo.nacalibracion.imagen.url}}" alt="{{nacalibracion.nombre}}" class=top-menu style="width:220px; ">
         {% else %}
-        <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ sinmanual.nombre }}" class=top-menu style="width:220px; ">{% endif %}
+        <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ nacalibracion.nombre }}" class=top-menu style="width:220px; ">{% endif %}
     </td>
     </tr>
 
@@ -27,7 +27,6 @@
 
 
 </table>
-
 </div>
 {% endfor %}
     <a href="/counters" class="top-menu" ><span class="glyphicon glyphicon-hand-left" >ATRAS</span></a>

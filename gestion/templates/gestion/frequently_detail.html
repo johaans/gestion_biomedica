@@ -7,15 +7,28 @@
 <div><h1><a> Listado de equipos </a></h1></div>
 {% for equipo in posts %}
 <div><p>
-    <ul>
-       <strong> <li style="font-size:16pt"><a href= "{% url 'equipo_detail' pk=equipo.pk %}" >{{ equipo.nombre|escape }} </a></li>
-        {{ equipo.activo }}</strong>
+    <table align="left">
+    <tr>
+        <td colspan="3"><strong style="font-size:26pt">
+                <a href= "{% url 'equipo_detail' pk=equipo.pk %}" >{{ equipo.nombre|escape }} </a>
+        </strong></td>
+        <td></td>
 
-</ul>
-    {% if posts.imagen %}
+    <td rowspan="2">
+        {% if posts.imagen %}
         <img src="{{posts.imagen.url}}" alt="{{posts.nombre}}" class=top-menu style="width:220px; ">
         {% else %}
         <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ posts.nombre }}" class=top-menu style="width:220px; ">{% endif %}
+    </td>
+    </tr>
+
+    <tr style="font-size:20pt" >
+        <td><b>ACTIVO #</b></td><td align="center"><b ><a href= "{% url 'equipo_detail' pk=equipo.pk %}" style="color-font=black" >{{ equipo.activo }}</a></b></td></tr>
+
+
+
+</table>
+
 </div>
 {% endfor %}
 {% endblock %}

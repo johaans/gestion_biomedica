@@ -36,13 +36,13 @@ def counters(request):
     """
     # Genera contadores de algunos de los objetos principales
     num_equipos=equipo.objects.all().count()
-    num_na_invima=equipo.objects.filter(invima__exact='na').count()
+    num_na_invima=equipo.objects.filter(invima__exact='N/A').count()
     num_no_invima=equipo.objects.filter(invima__exact='no').count()
     num_no_factura=equipo.objects.filter(factura__exact='no').count()
-    num_na_importacion=equipo.objects.filter(importacion__exact='na').count()
+    num_na_importacion=equipo.objects.filter(importacion__exact='N/A').count()
     num_no_importacion=equipo.objects.filter(importacion__exact='no').count()
     num_no_mantenimiento=equipo.objects.filter(mantenimiento__exact='no').count()
-    num_na_calibracion=equipo.objects.filter(calibracion__exact='na').count()
+    num_na_calibracion=equipo.objects.filter(calibracion__exact='N/A').count()
     num_no_calibracion=equipo.objects.filter(calibracion__exact='no').count()
     num_no_musuario=equipo.objects.filter(manual_usuario__exact='no').count()
     # Number of visits to this view, as counted in the session variable.
@@ -58,11 +58,16 @@ def counters(request):
                            },
 )
 
-@login_required
+@staff_member_required
 def frequently_detail(request):
-    posts = equipo.objects.filter(activo__lte=timezone.now()).order_by('activo')
-    paginate_by=3
+    posts = equipo.objects.filter(activo__lte=timezone.now()).order_by('ubicacion')
     return render(request, 'gestion/frequently_detail.html', {'posts': posts})
+
+@staff_member_required
+def noaplicainvima(request):
+    nainvima = equipo.objects.filter(invima__exact='N/A').order_by('activo')
+    return render(request, 'gestion/noaplicainvima.html', {'nainvima': nainvima})\
+
 @staff_member_required
 def noinvima(request):
     sininvima = equipo.objects.filter(invima__exact='no').order_by('activo')
@@ -71,14 +76,32 @@ def noinvima(request):
 def nomanual(request):
     sinmanual = equipo.objects.filter(manual_usuario__exact='no').order_by('activo')
     return render(request, 'gestion/nomanual.html', {'sinmanual': sinmanual})
-@staff_member_required
-def noaplicainvima(request):
-    nainvima = equipo.objects.filter(invima__exact='na').order_by('activo')
-    return render(request, 'gestion/noaplicainvima.html', {'nainvima': nainvima})
+
 @staff_member_required
 def nofactura(request):
     sinfactura = equipo.objects.filter(factura__exact='no').order_by('activo')
     return render(request, 'gestion/nofactura.html', {'sinfactura': sinfactura})
+
+@staff_member_required
+def noaplicacalibracion(request):
+    nacalibracion = equipo.objects.filter(calibracion__exact='N/A').order_by('activo')
+    return render(request, 'gestion/noaplicacalibracion.html', {'nacalibracion': nacalibracion})
+@staff_member_required
+def noaplicaimportacion(request):
+    naimpor = equipo.objects.filter(importacion__exact='N/A').order_by('activo')
+    return render(request, 'gestion/noaplicaimportacion.html', {'naimpor': naimpor})
+@staff_member_required
+def nocalibracion(request):
+    nocal = equipo.objects.filter(calibracion__exact='no').order_by('activo')
+    return render(request, 'gestion/nocalibracion.html', {'nocal': nocal})
+@staff_member_required
+def noimportacion(request):
+    noimpor = equipo.objects.filter(importacion__exact='no').order_by('activo')
+    return render(request, 'gestion/noimportacion.html', {'noimpor': noimpor})
+@staff_member_required
+def nomantenimiento(request):
+    noman = equipo.objects.filter(mantenimiento__exact='no').order_by('activo')
+    return render(request, 'gestion/nomantenimiento.html', {'noman': noman})
 @staff_member_required
 def search(request):
     query = request.GET.get('q', '')
@@ -127,30 +150,9 @@ def formulario_edit(request, pk):
         form = equipoModelForm(instance=post)
     return render(request, 'gestion/formulario.html', {'form': form})
 
-@login_required
-def pdf_view(request):
-    with open('gestion/static/media/pdf/mantenimiento.pdf', 'rb') as pdf:
-        response = HttpResponse(pdf.read(), content_type='application/pdf')
-        response['Content-Disposition'] = 'inline;filename=mantenimiento.pdf.pdf'
-        return response
-        pdf.closed
-
-@login_required
-def pdf_view2(request):
-    with open('gestion/static/media/pdf/metrologia.pdf', 'rb') as pdf:
-        response = HttpResponse(pdf.read(), content_type='application/pdf')
-        response['Content-Disposition'] = 'inline;filename=metrologia.pdf'
-        return response
-        pdf.closed
 
 
-@login_required
-def pdf_view3(request):
-    with open('gestion/static/media/pdf/inventario.pdf', 'rb') as pdf:
-        response = HttpResponse(pdf.read(), content_type='application/pdf')
-        response['Content-Disposition'] = 'inline;filename=inventario.pdf'
-        return response
-        pdf.closed
+
 
 @login_required
 def main(request):
@@ -222,7 +224,7 @@ def page_not_found(request,exception=None):
     response=render(request,template_name='404.html',)
     response.status_code=404
     return response
-def server_error(request):
-    response=render(request,template_name='500.html')
-    response.status_code=500
-    return response
+#def server_error(request):
+ #   response=render(request,template_name='500.html')
+  #  response.status_code=500
+   # return response

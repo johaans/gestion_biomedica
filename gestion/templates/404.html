@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
+{% extends 'gestion/base.html' %}
+{% load static %}
+{% block content %}
+{% load static %}
     <link href="https://fonts.googleapis.com/css?family=Coustard:900" rel="stylesheet">
-    <link href="{{ static 'css/404.css' }}" rel="stylesheet" >
+    <link rel="stylesheet" href="{% static 'css/404.css' %}" >
     {% load staticfiles %}
-</head>
+
 <body>
-    <h1>404</h1>
-    <h2>PAGE NOT FOUND</h2>
+    <h1> ERROR 404</h1>
+    <h2>PAGINA NO ENCONTRADA</h2>
     <div class="backg">
         <div class="sand">
-           <a href="https://www.youtube.com/watch?v=8nDAxCpGITQ">My Youtube Channel</a>
+            <b style="heigth=40pt"><a href="/" style="font-size=80pt">INICIO</a></b>
         </div>
         <div class="tower">
             <div class="s1"></div>
@@ -41,4 +41,4 @@
         </div>
     </div>
 </body>
-</html>
+{% endblock %}
