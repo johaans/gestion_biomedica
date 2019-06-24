@@ -138,6 +138,8 @@ class equipo(models.Model):
     cronograma_general=models.FileField(upload_to='uploads/cronocal/%Y/%m/%d/',null=True,blank=True)
     imagen=models.ImageField(upload_to='uploads/imagenes',null=True,blank=True, default=im)
     created_date = models.DateTimeField(default=timezone.now)
+    observacion=models.TextField(max_length=200,null=True,blank=True)
+
 
 
 
