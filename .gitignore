@@ -6,3 +6,6 @@ database.db
 /uploads
 .DS_Store
 /static
+.idea/
+todo_list
+todo_list.tgz

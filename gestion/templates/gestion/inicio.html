@@ -2,16 +2,67 @@
 {% block content %}
 {% load static %}
 <body>
+
 <h1><a>Gestion Quirustetic Home</a></h1>
+
+<div id="dialogoverlay"></div>
+<div id="dialogbox">
+  <div>
+    <div id="dialogboxhead"></div>
+    <div id="dialogboxbody"></div>
+    <div id="dialogboxfoot"></div>
+  </div>
+</div>
 
 <p style="font-size:16pt"><strong>Bienvenidos a <em>Gestion De Equipos Biomedicos</em></strong></p>
 {% if user.is_authenticated %}
 <h2>Cantidad de equipos Registrados:</h2>
 <p style="font-size:16pt"><strong>Equipos: <em>{{ num_equipos }}</em></strong></p>
-<img src="/media/uploads/imagenes/VALORES.png" alt="https://www.quirustetic.com" class=top-menu style="width:940px; ">
-<a href="https://www.quirustetic.com" target="_blank">QUIRUSTETIC</a>
+{% if ntasks_todo > 0 %}
+		<div class="container">
+			<h2>Tareas pendientes <a href="{% url 'tareas' %}" class="top-menu"><span class="glyphicon glyphicon-tasks"></span></a>
+</h2>
+			{% for task in tasks_todo %}
+			<table class="container_item">
+				<tr>
+					<td class="container_item_first_column">
+						<div class="task_name">{{ task.name }}</div>
+					</td>
+					<td>
+						<!-- Celda vacía -->
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="task_project">Proyecto: {{ task.project_str }}</div>
+						<div class="data">
+							Creado: {{ task.creation_date }} |
+							Prioridad: {{ task.priority_str }} |
+							Dificultad: {{ task.difficulty_str }} |
+							Asignación: {{ task.user_str }}
+						</div>
+					</td>
+					<td class="container_item_second_column">
+                        <a href="/drop/{{ task.pk }} " class="top-menu"><span class="glyphicon glyphicon-trash"></span></a>
+
+                        <button href="/set_done/{{ task.pk }} " class="glyphicon glyphicon-ok" onclick="Confirm.render('Delete Post?','set_done','{{ task.pk }}')"></button>
+
+					</td>
+				</tr>
+			</table>
+			{% endfor %}
+		</div>
+		{% endif %}
 <p class="date">Pagina Visitada {{ num_visits }}{% if num_visits == 1 %} vez {% else %} veces{% endif %}.</p>
 {% endif %}
+<p id="post_1">
+  Today is a lovely day ...
+  <button onclick="Confirm.render('Delete Post?','delete_post','post_1')">Delete</button>
+</p>
+<p id="post_2">
+  I like pickles ...
+  <button onclick="Confirm.render('Delete Post?','delete_post','post_2')">Delete</button>
+</p>
 </body>
 
 

@@ -4,31 +4,42 @@
 {% load static %}
 
 <div><h1><a> EQUIPOS QUE NO TIENEN MANUAL </a></h1></div>
-{% for equipo in sinmanual %}
-<div><p>
-    <table align="left">
-    <tr>
-        <td colspan="3"><strong style="font-size:24pt">
-                <a href= "{% url 'equipo_detail' pk=equipo.pk %}" >{{ equipo.nombre|escape }} </a>
-        </strong></td>
-        <td></td>
+<a href="/counters" style="float:right;font-size:36px;color: #0303AD;" ><span class="glyphicon glyphicon-hand-left" >BACK</span></a>
+{% for equipo in equipos %}
+    <ul class="media-list">
 
-    <td rowspan="2">
-        {% if equipo.sinmanual.imagen %}
-        <img src="{{equipo.sinmanual.imagen.url}}" alt="{{sinmanual.nombre}}" class=top-menu style="width:220px; ">
-        {% else %}
-        <img src="/media/uploads/imagenes/no_im.jpg" alt="{{ sinmanual.nombre }}" class=top-menu style="width:220px; ">{% endif %}
-    </td>
-    </tr>
+        <li class="media">
+                <a class="pull-left" href= "{% url 'equipo_detail' pk=equipo.pk %}" >
+                    {% if equipo.imagen %}
+                    <img class= "media-object"src="{{equipo.imagen.url}}" alt="{{equipo.nombre}}" width="80"; height="80" >
+                    {% else %}
+                    <img class= "media-object"src="/media/uploads/imagenes/no_im.jpg"  alt="{{equipo.nombre}}" width="80"; height="80">
+                    {% endif %}
+                </a>
+            <div class="media-body">
+                <h4>{{ equipo.nombre|escape }}</h4>
+                <span align="center"><b >ACTIVO# <a href= "{% url 'equipo_detail' pk=equipo.pk %}" style="color-font=black" >{{ equipo.activo }}</a> </b></span>
+            </div>
 
-    <tr style="font-size:22pt" >
-        <td><b>ACTIVO #</b></td><td align="center"><b ><a href= "{% url 'equipo_detail' pk=equipo.pk %}" style="color-font=black" >{{ equipo.activo }}</a></b></td></tr>
+        </li>
 
-
-
-</table>
-
-</div>
+</ul>
 {% endfor %}
-    <a href="/counters" class="top-menu" ><span class="glyphicon glyphicon-hand-left" >ATRAS</span></a>
+<div class="pagination">
+    <span class="step-links">
+        {% if equipos.has_previous %}
+            <a href="?page=1">&laquo; PRIMERA</a>
+            <a href="?page={{ equipos.previous_page_number }}">ANTERIOR</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ equipos.number }} of {{ equipos.paginator.num_pages }}.
+        </span>
+
+        {% if equipos.has_next %}
+            <a href="?page={{ equipos.next_page_number }}">SIGUIENTE</a>
+            <a href="?page={{ equipos.paginator.num_pages }}">ULTIMA &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 {% endblock %}

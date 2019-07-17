@@ -13,7 +13,7 @@
     <li style="font-size:16pt"><strong>Equipos Que No Tienen MANTENIMIENTO: <a href="{% url 'nomantenimiento' %}"> <em>{{ num_no_mantenimiento }}</em></a></strong></li>
     <li style="font-size:16pt"><strong>Equipos Que No Aplican A CALIBRACION: <a href="{% url 'noaplicacalibracion' %}"> <em>{{ num_na_calibracion }}</em></a></strong></li>
     <li style="font-size:16pt"><strong>Equipos Que No Tienen CALIBRACION:  <a href="{% url 'nocalibracion' %}"><em>{{ num_no_calibracion }}</em></a></strong></li>
-    <li style="font-size:16pt"><strong>Equipos Que No Tienen Manual De Usuario:  <a href="{% url 'nomanual' %}"><em>{{ num_no_calibracion }}</em></a></strong></li>
+    <li style="font-size:16pt"><strong>Equipos Que No Tienen Manual De Usuario:  <a href="{% url 'nomanual' %}"><em>{{ num_no_musuario }}</em></a></strong></li>
 
 </ul>
 <p class="date">Pagina Visitada {{ num_visits }}{% if num_visits == 1 %} vez {% else %} veces{% endif %}.</p>

@@ -130,14 +130,14 @@ class equipo(models.Model):
     manual_instalacion=models.CharField(max_length=3,choices=opciones,default=no)
     manual_mantenimiento=models.CharField(max_length=3,choices=opciones,default=no)
     ubicacion_manuales=models.CharField(max_length=20,null=True,blank=True)
-    guia_rapida=models.CharField(max_length=3,choices=opciones,default=na)
-    mantenimiento=models.CharField(max_length=3,choices=opciones,default=na)
+    guia_rapida=models.CharField(max_length=3,choices=opciones,default=no)
+    mantenimiento=models.CharField(max_length=3,choices=opciones,default=no)
     calibracion=models.CharField(max_length=3,choices=opciones,default=na)
     historico_mantenimiento=models.FileField(upload_to='uploads/cronom/%Y/%m/',null=True,blank=True)
     cronograma_general=models.FileField(upload_to='uploads/cronocal/%Y/%m/',null=True,blank=True)
     imagen=models.ImageField(upload_to='uploads/imagenes',null=True,blank=True, default=im)
     created_date = models.DateTimeField(default=timezone.now)
-    observacion=models.TextField(max_length=200,null=True,blank=True)
+    observacion=models.TextField(max_length=999,null=True,blank=True)
 
 
 

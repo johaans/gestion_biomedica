@@ -1,8 +1,21 @@
 {% extends "gestion/base.html" %}
 {% block content %}
 {% load static %}
-		{% load staticfiles %}
+{% load staticfiles %}
 		<link rel="stylesheet" type="text/css" href="{% static 'todo_list/css/main.css' %}">
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+        <link href="jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+
+        <script src="jquery-ui/external/jquery/jquery.js" type="text/javascript"></script>
+
+        <script src="jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+
+        <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 	<body>
 		<h1>Sistema de gestión de tareas</h1>
@@ -81,7 +94,7 @@
 					</td>
 					<td class="container_item_second_column">
                         <a href="/drop/{{ task.pk }} " class="top-menu"><span class="glyphicon glyphicon-trash"></span></a>
-                        <a href="/set_done/{{ task.pk }} " class="top-menu"><span class="glyphicon glyphicon-ok"></span></a>
+                        <a href="/set_done/{{ task.pk }} " class="top-menu"><span class="glyphicon glyphicon-ok" id="terminado"></span></a>
 					</td>
 				</tr>
 			</table>

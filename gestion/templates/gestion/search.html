@@ -1,13 +1,13 @@
 {% extends 'gestion/base.html' %}
+{% load static %}
 {% block content %}
 {% load static %}
-<body>
 <div><h1><a>Buscar</a></h1></div>
-<p><strong>Para equipos alquilados ingrese el rango <em>900-999</em>.</strong></p>
+<p><strong>Para equipos alquilados ingrese el rango mayor a <em>210</em>.</strong></p>
   <form action="." method="GET" class="post">
-    <label for="q">Busqueda: </label>
+    <label for="q">BUSCAR: </label>
     <input type="text" name="q" value="{{ query|escape }}">
-      <button type="submit" style="font_size:36pt"><span class="glyphicon glyphicon-search"></span> </button>
+      <button type="submit" style="font_size:38pt"><span class="glyphicon glyphicon-search"></span> </button>
 
   </form>
 
@@ -15,16 +15,30 @@
     <h2>"{{ query|escape }}":</h2>
 
 {% if results %}
-      <ul>
-      {% for activo in results %}
-          <li><a href="{% url 'equipo_detail' pk=activo.pk %}" >{{ activo|escape }}</a></li>
-          {{ nombre }}
-      {% endfor %}
+      {% for equipo in results %}
 
-      </ul>
-    {% else %}
-      <p>No match found</p>
-    {% endif %}
+          <a href="" style="float:right;font-size:36px;color: #0303AD;" ><span class="glyphicon glyphicon-hand-left" >BACK</span></a>
+          <ul class="media-list">
+              <li class="media">
+                  <a class="pull-left" href= "{% url 'equipo_detail' pk=equipo.pk %}" >
+                    {% if equipo.imagen %}
+                    <img class= "media-object"src="{{equipo.imagen.url}}" alt="{{equipo.nombre}}" width="80"; height="80" >
+                    {% else %}
+                    <img class= "media-object"src="/media/uploads/imagenes/no_im.jpg"  alt="{{equipo.nombre}}" width="80"; height="80">
+                    {% endif %}
+                </a>
+            <div class="media-body">
+                <h4>{{ equipo.nombre|escape }}</h4>
+                <span align="center"><b >ACTIVO# <a href= "{% url 'equipo_detail' pk=equipo.pk %}" style="color-font=black" >{{ equipo.activo }}</a> </b></span>
+            </div>
+
+        </li>
+
+</ul>
+{% endfor %}
+ {% else %}
+<p>No match found</p>
+{% endif %}
   {% endif %}
-</body>
+
 {% endblock %}
