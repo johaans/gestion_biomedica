@@ -44,8 +44,7 @@
 					</td>
 					<td class="container_item_second_column">
                         <a href="/drop/{{ task.pk }} " class="top-menu"><span class="glyphicon glyphicon-trash"></span></a>
-
-                        <button href="/set_done/{{ task.pk }} " class="glyphicon glyphicon-ok" onclick="Confirm.render('Delete Post?','set_done','{{ task.pk }}')"></button>
+                        <a href="/set_done/{{ task.pk }} " class="top-menu"><span class="glyphicon glyphicon-ok" id="terminado"></span></a>
 
 					</td>
 				</tr>
@@ -55,14 +54,7 @@
 		{% endif %}
 <p class="date">Pagina Visitada {{ num_visits }}{% if num_visits == 1 %} vez {% else %} veces{% endif %}.</p>
 {% endif %}
-<p id="post_1">
-  Today is a lovely day ...
-  <button onclick="Confirm.render('Delete Post?','delete_post','post_1')">Delete</button>
-</p>
-<p id="post_2">
-  I like pickles ...
-  <button onclick="Confirm.render('Delete Post?','delete_post','post_2')">Delete</button>
-</p>
+
 </body>
 
 

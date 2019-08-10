@@ -1,5 +1,4 @@
 from django.shortcuts import render, render_to_response, get_object_or_404, redirect,HttpResponse
-#from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.views.generic.base import View
 from django.template import RequestContext
 #from django.views.decorators import csrf
@@ -9,7 +8,6 @@ from .models import equipo
 from django.db.models import Q
 from .models import equipo
 from django.utils import timezone
-from django.views.generic import CreateView,TemplateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse,reverse_lazy
 from django.contrib.auth.decorators import login_required
