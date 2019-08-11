@@ -5,7 +5,7 @@ venv
 database.db
 /uploads
 .DS_Sore
-/static
+/static/media/uploads
 .idea/
 todo_list
 todo_list.tgz
