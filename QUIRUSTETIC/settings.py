@@ -26,7 +26,7 @@ SECRET_KEY = 'dt82=dpm!yrk3dmcc)v8_y+zn1#me3dj&f0b6peq6d4=zgvo+5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-ALLOWED_HOSTS = ['127.0.0.1', 'quirustetic.pythonanywhere.com','localhost','*','0.0.0.0']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,6 +87,7 @@ DATABASES = {
          'PASSWORD': '96020917463',
          'HOST':'127.0.0.1',
          'PORT':'3307',
+
         # 'ENGINE': 'django.db.backends.mysql',
         # 'NAME': 'quirustetic$quirustetic',
         # 'OPTIONS':{'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
@@ -155,3 +156,7 @@ EMAIL_HOST_USER = 'gestioningenieriabiomedica@gmail.com'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+try:
+    from local_settings import *
+except ImportError:
+    pass

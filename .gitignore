@@ -4,8 +4,9 @@ __pycache__
 venv
 database.db
 /uploads
-.DS_Store
+.DS_Sore
 /static
 .idea/
 todo_list
 todo_list.tgz
+local_settings.py
