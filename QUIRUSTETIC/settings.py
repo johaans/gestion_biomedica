@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 from django.urls import reverse_lazy
 
+import dj_database_url
+
+from decouple import config
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -24,7 +28,7 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 SECRET_KEY = 'dt82=dpm!yrk3dmcc)v8_y+zn1#me3dj&f0b6peq6d4=zgvo+5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = ['*']
 
@@ -49,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
+
 ]
 
 ROOT_URLCONF = 'QUIRUSTETIC.urls'
@@ -78,25 +84,33 @@ WSGI_APPLICATION = 'QUIRUSTETIC.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
+db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES = {
         'default': {
-         'ENGINE': 'django.db.backends.sqlite3',
-         'NAME': 'database.db',
-         'USER': 'root',
-         'PASSWORD': '96020917463',
-         'HOST':'127.0.0.1',
-         'PORT':'3307',
-
+          # 'ENGINE': 'django.db.backends.sqlite3',
+          # 'NAME': 'database.db',
+          # 'USER': 'root',
+          # 'PASSWORD': '96020917463',
+          # 'HOST':'127.0.0.1',
+          # 'PORT':'3307',
         # 'ENGINE': 'django.db.backends.mysql',
         # 'NAME': 'quirustetic$quirustetic',
         # 'OPTIONS':{'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
         # 'USER': 'quirustetic',
         # 'PASSWORD': 'Itm733922',
         # 'HOST':'quirustetic.mysql.pythonanywhere-services.com',
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'quirustetic',
+         'USER': 'quirustetic',
+         'PASSWORD': '',
+         'HOST': 'localhost',
+         'PORT': '5432',
+        #'default': dj_database_url.config(
+        #default=config('DATABASE_URL')),
+    #)
     }
 }
-
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -156,7 +170,16 @@ EMAIL_HOST_USER = 'gestioningenieriabiomedica@gmail.com'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 try:
     from local_settings import *
 except ImportError:
     pass
+
+
