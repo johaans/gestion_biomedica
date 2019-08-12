@@ -27,8 +27,10 @@
         <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 
         <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <link rel="stylesheet" href="{% static 'css/dialog.css' %}">
-        <script src="/static/js/dialog.js"></script>
+        <!-- only if you also need jQuery -->
+        <script src="{% static 'intercoolerjs/js/jquery.js' %}"></script>
+        <!-- this is the minified intercooler.js -->
+        <script src="{% static 'intercoolerjs/js/intercooler.min.js' %}"></script>
 
         {% load static %}
 
@@ -118,13 +120,14 @@
 
                 <div class="col-sm-10">
 
-                    {% block content %}
+                  <div id="contenido"> {% block content %}
+                      {% endblock %}
+                  </div>
 
                     {% block pagination %}
 
                     {% endblock %}
 
-                    {% endblock %}
 
                 </div>
 

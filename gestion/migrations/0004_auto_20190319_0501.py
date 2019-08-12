@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='cronograma',
             name='tipo',
-            field=models.CharField(choices=[('mantenimiento', 'mantenimiento'), ('calibracion', 'calibracion'), ('validacion', 'validacion'), ('verificacion', 'verificacion')], default='mantenimiento', max_length=12),
+            field=models.CharField(choices=[('mantenimiento', 'mantenimiento'), ('calibracion', 'calibracion'), ('validacion', 'validacion'), ('verificacion', 'verificacion')], default='mantenimiento', max_length=100),
         ),
     ]

@@ -108,11 +108,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='equipo',
             name='uso',
-            field=models.CharField(choices=[('estetica', 'estetica'), ('diagnostico', 'diagnostico'), ('laboratorio', 'laboratorio'), ('prevencion', 'prevencion'), ('rehabilitacion', 'rehabilitacion'), ('soporte vital', 'soporte vital'), ('tratamiento', 'tratamiento'), ('N/A', 'N/A')], default='N/A', max_length=15),
+            field=models.CharField(choices=[('estetica', 'estetica'), ('diagnostico', 'diagnostico'), ('laboratorio', 'laboratorio'), ('prevencion', 'prevencion'), ('rehabilitacion', 'rehabilitacion'), ('soporte vital', 'soporte vital'), ('tratamiento', 'tratamiento'), ('N/A', 'N/A')], default='N/A', max_length=100),
         ),
         migrations.AlterField(
             model_name='equipo',
             name='ubicacion',
-            field=models.CharField(choices=[('quirofano 1', 'quirofano 1'), ('quirofano 2', 'quirofano 2'), ('quirofano 3', 'quirofano 3'), ('quirofano 4', 'quirofano 4'), ('central de esterilizacion', 'central de esterilizacion'), ('recuperacion', 'recuperacion'), ('preparacion', 'preparacion'), ('procedimientos menores', 'procedimientos menores'), ('consultorio anestesia', 'consultorio anestesia'), ('consultorio 2', 'consultorio 2'), ('otro', 'otro')], default='otro', max_length=25, verbose_name='UBICACION'),
+            field=models.CharField(choices=[('quirofano 1', 'quirofano 1'), ('quirofano 2', 'quirofano 2'), ('quirofano 3', 'quirofano 3'), ('quirofano 4', 'quirofano 4'), ('central de esterilizacion', 'central de esterilizacion'), ('recuperacion', 'recuperacion'), ('preparacion', 'preparacion'), ('procedimientos menores', 'procedimientos menores'), ('consultorio anestesia', 'consultorio anestesia'), ('consultorio 2', 'consultorio 2'), ('otro', 'otro')], default='otro', max_length=100, verbose_name='UBICACION'),
         ),
     ]

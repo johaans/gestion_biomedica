@@ -29,6 +29,7 @@ urlpatterns = [
     path('drop/<int:pk>/',views.drop,name='drop'),
     path('create_project', views.create_project,name='create_project'),
     path('create_task',views.create_task,name='create_task'),
+    path('activo/<pk>/remove/', views.activo_remove, name='activo_remove'),
               ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'gestion.views.page_not_found'

@@ -17,6 +17,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='cronograma',
             name='tipo',
-            field=models.CharField(choices=[('mantenimiento', 'mantenimiento'), ('calibracion', 'calibracion')], default='mantenimiento', max_length=12),
+            field=models.CharField(choices=[('mantenimiento', 'mantenimiento'), ('calibracion', 'calibracion')], default='mantenimiento', max_length=100),
         ),
     ]

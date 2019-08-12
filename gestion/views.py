@@ -322,3 +322,9 @@ def page_not_found(request,exception=None):
  #   response=render(request,template_name='500.html')
   #  response.status_code=500
    # return response
+
+
+def activo_remove(request, pk):
+    post = get_object_or_404(equipo, pk=pk)
+    post.delete()
+    return redirect('frequently_detail')

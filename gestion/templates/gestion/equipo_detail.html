@@ -3,6 +3,7 @@
 {% block content %}
 {% load static %}
 <body>
+<div id="contenido">
     <div class="post" xmlns="http://www.w3.org/1999/html">
         {% if equipo.created_date %}
             <div class="date">
@@ -21,8 +22,16 @@
 
                     </th>
                     {% if user.is_authenticated %}
-                    <th><a class=top-menu href="{% url 'formulario_edit' pk=post.pk %}">
-                        <span class="glyphicon glyphicon-edit"></span></a>
+                    <th><div id="confirm-me" class="btn btn-primary" ic-post-to="/click" ic-trigger-on="contenido">
+                        Editar
+                        <i class="ic-indicator fa fa-spinner fa-spin" style="display: none;"></i>
+          </div>
+                       <a class="top-menu" href="{% url 'formulario_edit' pk=post.pk %}">
+                            <span class="glyphicon glyphicon-edit"></span></a>
+
+                        <a class="top-menu" href="{% url 'activo_remove' pk=post.pk %}">
+                            <span class="glyphicon glyphicon-remove"></span></a>
+
                     </th>
                     {% endif %}
 
@@ -166,5 +175,40 @@
             </table>
         </div>
     </div>
+</div>
+<script>
+            $(function () {
+              $('#confirm-me').click(function () {
+                BootstrapDialog.show(
+                  {
+                    message: 'ESTAS SEGURO DE PROCEDER?',
+                    buttons: [
+                      {
+                        label: 'Confirmar',
+                        cssClass: 'btn-primary',
+                        action: function (dialogItself) {
+                          dialogItself.close();
+                          $('#confirm-me').trigger('contenido'; // this lines up with the ic-trigger name on the element
+                        }
+                      },
+                      {
+                        icon: 'glyphicon glyphicon-ban-circle',
+                        label: 'Cancel',
+                        cssClass: 'btn-warning',
+                        action: function (dialogItself) {
+                          dialogItself.close();
+                        }
+                      }]
+                  });
+              })
+            });
+
+            $.mockjax({
+              url: "/click",
+              responseTime: 1500,
+              response: function (settings) { 'formulario_edit' ,pk=post.pk }
+            });
+          </script>
+
 </body>
 {% endblock %}

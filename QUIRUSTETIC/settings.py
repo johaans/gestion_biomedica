@@ -43,17 +43,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gestion',
+    'intercoolerjs',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+
 
 ]
 
@@ -84,33 +86,33 @@ WSGI_APPLICATION = 'QUIRUSTETIC.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-db_from_env = dj_database_url.config(conn_max_age=500)
+#db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES = {
-        'default': {
-          # 'ENGINE': 'django.db.backends.sqlite3',
-          # 'NAME': 'database.db',
-          # 'USER': 'root',
-          # 'PASSWORD': '96020917463',
-          # 'HOST':'127.0.0.1',
-          # 'PORT':'3307',
+        # 'default': {
+           # 'ENGINE': 'django.db.backends.sqlite3',
+           # 'NAME': 'database.db',
+           # 'USER': 'root',
+           # 'PASSWORD': '96020917463',
+           # 'HOST':'127.0.0.1',
+           # 'PORT':'3307',
         # 'ENGINE': 'django.db.backends.mysql',
         # 'NAME': 'quirustetic$quirustetic',
         # 'OPTIONS':{'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
         # 'USER': 'quirustetic',
         # 'PASSWORD': 'Itm733922',
         # 'HOST':'quirustetic.mysql.pythonanywhere-services.com',
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': 'quirustetic',
-         'USER': 'quirustetic',
-         'PASSWORD': '',
-         'HOST': 'localhost',
-         'PORT': '5432',
-        #'default': dj_database_url.config(
-        #default=config('DATABASE_URL')),
+        #  'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #  'NAME': 'gestionequipos',
+        #  'USER': 'postgres',
+        #  'PASSWORD': '96020917463',
+        #  'HOST': 'localhost',
+        #  'PORT': '',
+        'default': dj_database_url.config(
+        default=config('DATABASE_URL')),
     #)
     }
-}
-DATABASES['default'].update(db_from_env)
+#}
+#DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -151,9 +153,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
-#STATIC_FILES_DIRS = {
- #   os.path.join(PROJECT_PATH, "..","todo_list",'templates','static'),
-#}
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'static','media')
 LOGIN_REDIRECT_URL = '/'
@@ -175,7 +174,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 try:
     from local_settings import *
