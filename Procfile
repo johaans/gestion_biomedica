@@ -1,1 +1,1 @@
-"worker: python settings.py"  
+web: gunicorn quirustetic.wsgi --log-file-
