@@ -1,1 +1,1 @@
-web: gunicorn QUIRUSTETIC.wsgi --log-file-
+web: gunicorn QUIRUSTETIC.wsgi --log-file -
