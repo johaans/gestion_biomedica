@@ -209,10 +209,12 @@ def search(request):
         "results": results,
         "query": query
     })
-@staff_member_required
+
+@login_required
 def equipo_detail(request,pk):
     post = get_object_or_404(equipo, pk=pk)
     return render(request, 'gestion/equipo_detail.html', {'post': post})
+
 @login_required
 def formulario(request):
     if request.method == "POST":
