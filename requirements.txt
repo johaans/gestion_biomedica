@@ -1,5 +1,5 @@
 dj-database-url==0.5.0
-Django==2.2.4
+Django==2.2.8
 django-betterforms==1.2
 django-intercoolerjs==1.2.2.0
 gunicorn==19.9.0
